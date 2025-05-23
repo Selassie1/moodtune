@@ -1,0 +1,94 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.681);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+}
+
+.modal-content {
+  background: #000000;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 0.5px solid rgba( 255, 255, 255, 0.18 );
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+}
+
+.modal-content .top .logo img {
+  width: 350px;
+  margin: 0;
+}
+
+.modal-content .top .intro {
+    font-size: 30px;
+    font-weight: 300;
+    margin-top: 0;
+}
+
+.modal-content .middle input {
+    width: 300px;
+    padding: 14px 20px;
+    padding-left: 24px;
+    margin: 15px 0;
+    font-size: 18px;
+    border-radius: 16px;
+    border: none;
+    background: rgba( 255, 255, 255, 0.2 );
+}
+
+.modal-content .middle .option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-content .middle .option .remember {
+  display: flex;
+  align-items: center;
+}
+
+.modal-content .middle .option .remember input {
+  width: 30px;
+  scale: 1.2;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  background: none;
+}
+
+.buttom button {
+  border-radius: 20px;
+  background-color: #2ecc40;
+  color: black;
+  padding: 14px 20px;
+  width: 200px;
+  margin: 20px 0;
+}
+
+.buttom button:hover {
+  background-color: #126422;
+  transition: all 0.3s ease;
+}
+
+.buttom .signup {
+  color: #2ecc40;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
