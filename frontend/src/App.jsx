@@ -1,16 +1,41 @@
-import { Routes, Route } from 'react-router-dom'
-import Welcome from './pages/Welcome'
-import { useState } from 'react'
-import './App.css'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import Welcome from './pages/Welcome';
+import Home from './pages/Home';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [username, setUsername] = useState('');
+  const location = useLocation();
+
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    const savedUsername = localStorage.getItem('username');
+
+    if (token && savedUsername) {
+      setIsAuthenticated(true);
+      setUsername(savedUsername);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [location]); // Check auth whenever route changes
 
   return (
     <Routes>
       <Route path="/" element={<Welcome />} />
+      <Route
+        path="/home"
+        element={
+          isAuthenticated ? (
+            <Home username={username} />
+          ) : (
+            <Navigate to="/" replace />
+          )
+        }
+      />
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;

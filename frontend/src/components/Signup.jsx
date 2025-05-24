@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../styles/signin.css';
 import logo from '../assets/logo/horizontal-rgb.png';
 
-export default function Signin({ onClose, onSwitch }) {
+export default function Signup({ onClose, onSwitch }) {
   const [formData, setFormData] = useState({
     username: '',
-    password: ''
+    password: '',
+    confirmPassword: '',
+    phone: ''
   });
+
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -20,43 +21,33 @@ export default function Signin({ onClose, onSwitch }) {
   };
 
   const handleSubmit = async () => {
-    setError('');
-    setMessage('');
-
-    if (!formData.username || !formData.password) {
-      setError('Please enter username and password.');
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match.');
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:5001/api/auth/signin', {
+      const response = await fetch('http://localhost:5001/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           username: formData.username,
-          password: formData.password
+          password: formData.password,
+          phone: formData.phone
         })
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.message || 'Invalid username or password.');
+        setError(data.message || 'Something went wrong.');
       } else {
-        const { access_token, username } = data;
-        localStorage.setItem('access_token', access_token);
-        localStorage.setItem('username', username);
-        setMessage('Login successful!');
+        setMessage('Signup successful!');
         setError('');
         setTimeout(() => {
-          onClose();
-          navigate('/home');
-        }, 500);
-
-        if (data.token) {
-          localStorage.setItem('token', data.token);
-        }
-        navigate('/home');
+            onClose();
+          onSwitch();
+        }, 1000);
       }
     } catch (err) {
       setError('Failed to connect to server.');
@@ -82,6 +73,15 @@ export default function Signin({ onClose, onSwitch }) {
               onChange={handleChange}
             />
           </div>
+          <div className="user">
+            <input
+              type="text"
+              name="phone"
+              placeholder="Phone (optional)"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+          </div>
           <div className="pass">
             <input
               type="password"
@@ -91,30 +91,24 @@ export default function Signin({ onClose, onSwitch }) {
               onChange={handleChange}
             />
           </div>
-          <div className="option">
-            <div className="remember">
-              <input type="checkbox" />
-              <label>Remember me</label>
-            </div>
-            <div className="forgot">
-              <p>Forgot Password?</p>
-            </div>
+          <div className="pass">
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
           </div>
         </div>
         <div className="buttom">
-          <button onClick={handleSubmit}>Sign In</button>
-          <p>
-            Don't have an acccount? <span onClick={onSwitch} className="signup">Sign Up</span>
-          </p>
+          <button onClick={handleSubmit}>Sign Up</button>
+          <p>Already have an account? <span onClick={onSwitch} className="signup">Sign in</span></p>
           {error && <p className="error">{error}</p>}
           {message && <p className="success">{message}</p>}
         </div>
-        <button onClick={onClose} className="close-button">
-          ×
-        </button>
+        <button onClick={onClose} className="close-button">×</button>
       </div>
     </div>
   );
 }
-
-

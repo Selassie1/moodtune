@@ -24,6 +24,10 @@
   position: relative;
 }
 
+.modal-content .middle {
+  margin: 10px 0;
+}
+
 .modal-content .top .logo img {
   width: 350px;
   margin: 0;
@@ -33,6 +37,7 @@
     font-size: 30px;
     font-weight: 300;
     margin-top: 0;
+  margin-bottom: 20px;
 }
 
 .modal-content .middle input {
@@ -63,6 +68,7 @@
   border: 1px solid #fff;
   border-radius: 4px;
   background: none;
+  cursor: pointer;
 }
 
 .buttom button {
@@ -89,6 +95,23 @@
   right: 10px;
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   cursor: pointer;
+}
+
+.forgot {
+  cursor: pointer;
+}
+
+.forgot:hover {
+  text-decoration: underline;
+
+}
+
+.signup {
+  cursor: pointer;
+}
+
+.signup:hover {
+  text-decoration: underline;
 }

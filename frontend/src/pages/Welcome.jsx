@@ -5,11 +5,13 @@ import '../styles/welcome.css'
 import logo from '../assets/logo/horizontal-rgb.png';
 import Spline from '@splinetool/react-spline';
 import Signin from '../components/Signin';
+import AuthSwitch from '../components/AuthSwitch';
 
-const Welcome = () => {
+const Welcome = (onSwitch) => {
     const [inputValue, setInputValue] = useState('');
     const [isRecording, setIsRecording] = useState(false);
     const [showSignin, setShowSignin] = useState(false);
+    const [showAuthSwitch, setShowAuthSwitch] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -84,8 +86,10 @@ const Welcome = () => {
                 <Spline scene="https://prod.spline.design/QIXuTzdx9cD7Nw9U/scene.splinecode" />
             </div>
             
-            <button onClick={() => setShowSignin(true)} className="welcome-button">Get started</button>
-            {showSignin && <Signin onClose={() => setShowSignin(false)} />}
+            <button onClick={() => setShowAuthSwitch(true)} className="welcome-button">Get started</button>
+            {showAuthSwitch && (
+                <AuthSwitch onClose={() => setShowAuthModal(false)} />
+            )}
         </div>
     )
 }
