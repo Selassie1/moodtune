@@ -4,6 +4,8 @@ import NavBar from '../components/NavBar';
 import Feed from '../views/Feed';
 import Beats from '../views/Beats';
 import Radio from '../views/Radio';
+import Playlists from '../views/Playlists';
+import Favorites from '../views/Favorites';
 
 export default function Home({ username }) {
   const [activeTab, setActiveTab] = useState('feed');
@@ -14,7 +16,6 @@ export default function Home({ username }) {
     window.location.href = '/';
   };
 
-  // Choose which component to show
   const renderView = () => {
     switch (activeTab) {
       case 'feed':
@@ -23,6 +24,10 @@ export default function Home({ username }) {
         return <Beats />;
       case 'radio':
         return <Radio />;
+      case 'playlists':
+        return <Playlists />;
+      case 'favorites':
+        return <Favorites />;
       default:
         return <Feed />;
     }

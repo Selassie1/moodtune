@@ -3,12 +3,17 @@
 .home-wrapper {
   display: flex;
   font-family: 'Urbanist', sans-serif;
-  margin: 0 !important;
-  padding: 0 !important;
   text-align: left !important;
-  width: 100%;
   justify-content: space-between;
-  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url('../assets/images/2.jpg');
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 1920px;
 }
 
 .home-content {
