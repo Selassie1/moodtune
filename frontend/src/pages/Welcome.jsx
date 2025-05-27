@@ -17,14 +17,12 @@ const Welcome = (onSwitch) => {
         e.preventDefault();
         if (inputValue.trim()) {
         console.log('Submitted:', inputValue);
-        // Add your submission logic here
         setInputValue('');
         }
     };
 
     const toggleRecording = () => {
         setIsRecording(!isRecording);
-        // Add your audio recording logic here
         console.log(isRecording ? 'Stopped recording' : 'Started recording');
     };
     return (

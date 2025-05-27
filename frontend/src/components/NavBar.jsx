@@ -1,0 +1,40 @@
+import React from 'react';
+import { FaList, FaUser } from 'react-icons/fa';
+import { LuPodcast } from "react-icons/lu";
+import { MdRssFeed } from "react-icons/md";
+import { SiBeatsbydre } from "react-icons/si";
+import logo from '../assets/logo/horizontal-rgb.png';
+import '../styles/navbar.css';
+
+const NavBar = ({ activeTab, setActiveTab }) => {
+  const tabs = [
+    { name: 'Feed', icon: <MdRssFeed />, key: 'feed' },
+    { name: 'Radio / Podcast', icon: <LuPodcast />, key: 'radio' },
+    { name: 'Beats', icon: <SiBeatsbydre />, key: 'beats' },
+    { name: 'Albums', icon: <FaList />, key: 'albums' },
+    { name: 'Artists', icon: <FaUser />, key: 'artists' },
+  ];
+
+  return (
+    <div className="nav-container">
+        <div className="nav-logo">
+            <img src={logo} alt="Logo" className="logo-image" />
+        </div>
+      <h2 className="nav-title">Library</h2>
+      <ul className="nav-list">
+        {tabs.map(tab => (
+          <li
+            key={tab.key}
+            className={`nav-item ${activeTab === tab.key ? 'active' : ''}`}
+            onClick={() => setActiveTab(tab.key)}
+          >
+            <span className="icon">{tab.icon}</span>
+            <span className="text">{tab.name}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default NavBar;

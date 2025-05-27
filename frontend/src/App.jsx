@@ -19,22 +19,33 @@ function App() {
     } else {
       setIsAuthenticated(false);
     }
-  }, [location]); // Check auth whenever route changes
+  }, [location]);
+
+  const isFullWidthPage = location.pathname === '/home';
 
   return (
-    <Routes>
-      <Route path="/" element={<Welcome />} />
-      <Route
-        path="/home"
-        element={
+      <Routes>
+        <Route 
+          path="/" 
+          element={
           isAuthenticated ? (
-            <Home username={username} />
-          ) : (
-            <Navigate to="/" replace />
-          )
-        }
-      />
-    </Routes>
+              <Home username={username} />
+            ) : (
+              <Welcome />
+            )
+        } 
+        />
+        <Route
+          path="/home"
+          element={
+            isAuthenticated ? (
+              <Home username={username} />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+      </Routes>
   );
 }
 

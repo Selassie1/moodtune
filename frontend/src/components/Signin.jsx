@@ -48,13 +48,11 @@ export default function Signin({ onClose, onSwitch }) {
         localStorage.setItem('username', username);
         setMessage('Login successful!');
         setError('');
-        setTimeout(() => {
-          onClose();
-          navigate('/home');
-        }, 500);
-
         if (data.token) {
           localStorage.setItem('token', data.token);
+          setTimeout(() => {
+              onClose();
+            }, 3000);
         }
         navigate('/home');
       }
