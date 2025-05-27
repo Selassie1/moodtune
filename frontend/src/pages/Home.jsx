@@ -6,6 +6,7 @@ import Beats from '../views/Beats';
 import Radio from '../views/Radio';
 import Playlists from '../views/Playlists';
 import Favorites from '../views/Favorites';
+import { FiLogOut } from "react-icons/fi";
 
 export default function Home({ username }) {
   const [activeTab, setActiveTab] = useState('feed');
@@ -41,7 +42,7 @@ export default function Home({ username }) {
         <div className="home-header">
           <h1>Welcome, {username}!</h1>
           <button onClick={handleLogout} className="logout-button">
-            Logout
+            <span>Logout</span><FiLogOut />
           </button>
         </div>
 

@@ -22,7 +22,7 @@ def chat():
     try:
         # Craft a system prompt to generate both a response and a keyword
         system_prompt = (
-            "You're a music mood assistant. When a user shares how they feel or describes a mood, "
+            "You're a music mood assistant, your name is 'DJ Tunz'. When a user shares how they feel or describes a mood, "
             "you must respond in two parts:\n"
             "1. A friendly message back to the user (1-2 lines max).\n"
             "2. A distilled keyword or mood phrase on a new line labeled as: KEYWORDS: <mood/genre>\n"

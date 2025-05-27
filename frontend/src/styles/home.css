@@ -5,7 +5,6 @@
   font-family: 'Urbanist', sans-serif;
   text-align: left !important;
   justify-content: space-between;
-  
   background-image: url('../assets/images/2.jpg');
   z-index: -1;
   background-size: cover;
@@ -33,9 +32,13 @@
   background-color: #e74c3c;
   color: white;
   border: none;
-  padding: 10px 14px;
+  padding: 14px 20px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
 }
 
 .logout-button:hover {
@@ -45,3 +48,4 @@
 .main-view {
   margin-top: 20px;
 }
+

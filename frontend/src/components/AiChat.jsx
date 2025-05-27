@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import '../styles/aichat.css'
+import { BsFillDiscFill } from "react-icons/bs";
 
 const AiChat = () => {
   const [message, setMessage] = useState('');
@@ -27,54 +29,24 @@ const AiChat = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <h2>AI Chat</h2>
+    <div className='container'>
+      <h2><span>DJ Tunz</span><BsFillDiscFill /></h2>
+      <div className='responseBox'>
+        <strong>AI:</strong> {response}
+      </div>
       <textarea
-        placeholder="Type your message..."
+        placeholder="What are you feeling?..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         rows={4}
-        style={styles.textarea}
+        className='textarea'
       />
-      <button onClick={sendPrompt} style={styles.button} disabled={loading}>
+      <button onClick={sendPrompt} disabled={loading}>
         {loading ? 'Thinking...' : 'Send'}
       </button>
-      <div style={styles.responseBox}>
-        <strong>AI:</strong> {response}
-      </div>
+      
     </div>
   );
-};
-
-const styles = {
-  container: {
-    padding: '20px',
-    maxWidth: '500px',
-    margin: '40px auto',
-    backgroundColor: '#f5f5f5',
-    borderRadius: '10px',
-    boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
-  },
-  textarea: {
-    width: '100%',
-    fontSize: '1rem',
-    padding: '10px',
-    borderRadius: '5px',
-    marginBottom: '10px'
-  },
-  button: {
-    padding: '10px 20px',
-    fontSize: '1rem',
-    borderRadius: '5px',
-    cursor: 'pointer'
-  },
-  responseBox: {
-    marginTop: '20px',
-    padding: '10px',
-    backgroundColor: '#e0e0e0',
-    borderRadius: '5px',
-    minHeight: '40px'
-  }
 };
 
 export default AiChat;

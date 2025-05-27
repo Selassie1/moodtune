@@ -1,5 +1,6 @@
 import React from 'react';
 import AiChat from '../components/AiChat';
+import '../styles/feed.css'
 
 const Feed = () => {
   return (
