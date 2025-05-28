@@ -1,10 +1,8 @@
+# app/__init__.py
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_jwt_extended import JWTManager
 from flask_cors import CORS
-
-db = SQLAlchemy()
-jwt = JWTManager()  
+from app.extensions import db, jwt  # ← use extensions
+from app.routes.audius import audius_bp
 
 def create_app():
     app = Flask(__name__)
@@ -18,9 +16,10 @@ def create_app():
     jwt.init_app(app)
 
     from app.routes.auth import auth_bp
-    from app.routes.ai import ai_bp  # ✅ add this import
+    from app.routes.ai import ai_bp
 
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
-    app.register_blueprint(ai_bp, url_prefix='/api/ai')  # ✅ register AI routes
+    app.register_blueprint(ai_bp, url_prefix='/api/ai')
+    app.register_blueprint(audius_bp, url_prefix='/api/audius')
 
     return app

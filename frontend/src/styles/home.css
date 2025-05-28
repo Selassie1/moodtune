@@ -26,6 +26,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.274);
+  border-radius: 16px;
+  padding: 10px 40px;
+  backdrop-filter: blur(3px);
+}
+
+.home-header h1 {
+  color: white;
+  font-size: 30px;
+  font-style: normal;
+  margin: 0;
 }
 
 .logout-button {

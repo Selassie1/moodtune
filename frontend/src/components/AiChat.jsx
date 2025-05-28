@@ -32,7 +32,7 @@ const AiChat = () => {
     <div className='container'>
       <h2><span>DJ Tunz</span><BsFillDiscFill /></h2>
       <div className='responseBox'>
-        <strong>AI:</strong> {response}
+        <strong>Tunz:</strong> {response}
       </div>
       <textarea
         placeholder="What are you feeling?..."

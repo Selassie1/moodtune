@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/feed.css'
+import Billboard from '../components/Billboard';
+import GenreList from '../components/GenreList';
+import Player from '../components/Player';
 
 const Beats = () => {
+  const [currentSong, setCurrentSong] = useState(null);
+
   return (
     <div className='beats feed'>
-      <h1 className="text-2xl font-bold">Beats Section</h1>
+      <Billboard onSelectSong={setCurrentSong} />
+      <GenreList onSelectSong={setCurrentSong}/>
+      <Player song={currentSong} />
     </div>
   
 );

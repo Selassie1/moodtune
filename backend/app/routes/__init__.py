@@ -5,3 +5,5 @@ from .ai import ai_bp
 routes = Blueprint('routes', __name__)
 routes.register_blueprint(auth_bp)
 routes.register_blueprint(ai_bp)
+
+# , url_prefix='/audius'

@@ -1,0 +1,39 @@
+.player-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #1a1a1a;
+  color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.song-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.song-info img {
+  width: 80px;
+  height: 80px;
+  border-radius: 0.5rem;
+}
+
+.controls {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  font-size: 1.5rem;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.controls button.active {
+  color: #1db954; /* Spotify green for loop active */
+}

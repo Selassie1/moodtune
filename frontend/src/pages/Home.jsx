@@ -16,6 +16,15 @@ export default function Home({ username }) {
     localStorage.removeItem('username');
     window.location.href = '/';
   };
+   const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearch = (query) => {
+    console.log('Search query:', query);
+    // Implement your search logic here
+    // Example: API call, filtering local data, etc.
+    // Then set the results:
+    // setSearchResults(results);
+  };
 
   const renderView = () => {
     switch (activeTab) {
@@ -40,10 +49,15 @@ export default function Home({ username }) {
 
       <div className="home-content">
         <div className="home-header">
-          <h1>Welcome, {username}!</h1>
-          <button onClick={handleLogout} className="logout-button">
-            <span>Logout</span><FiLogOut />
-          </button>
+          <div className="left">
+          </div>
+          <div className="right">
+            <h1>Welcome, {username}!</h1>
+            <button onClick={handleLogout} className="logout-button">
+              <span>Logout</span><FiLogOut />
+            </button>
+          </div>
+          
         </div>
 
         <div className="main-view">

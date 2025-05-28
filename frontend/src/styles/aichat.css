@@ -3,10 +3,15 @@
     max-width: 420px;
     background-color: rgb(0, 0, 0);
     border-radius: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.385);
     padding-right: 60px;
     padding-left: 40px;
     padding-bottom: 40px;
+}
+
+.container:hover {
+    scale: 1.02;
+    transition: all 0.6s ease-in-out;
 }
 
 .container h2 {
