@@ -7,23 +7,23 @@ import Radio from '../views/Radio';
 import Playlists from '../views/Playlists';
 import Favorites from '../views/Favorites';
 import { FiLogOut } from "react-icons/fi";
+import { FaUserCircle } from "react-icons/fa";
+import { GoBellFill } from "react-icons/go";
+import { CiSearch } from "react-icons/ci";
 
 export default function Home({ username }) {
   const [activeTab, setActiveTab] = useState('feed');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleLogout = () => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('username');
     window.location.href = '/';
   };
-   const [searchResults, setSearchResults] = useState([]);
 
-  const handleSearch = (query) => {
-    console.log('Search query:', query);
-    // Implement your search logic here
-    // Example: API call, filtering local data, etc.
-    // Then set the results:
-    // setSearchResults(results);
+
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
   };
 
   const renderView = () => {
@@ -45,14 +45,22 @@ export default function Home({ username }) {
 
   return (
     <div className="home-wrapper">
-      <NavBar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <NavBar className='navbar' activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <div className="home-content">
         <div className="home-header">
           <div className="left">
+            <CiSearch className='icon'/>
+            <input
+              type="search"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={handleChange}
+            />
           </div>
           <div className="right">
-            <h1>Welcome, {username}!</h1>
+              <GoBellFill className='icon'/>
+              <FaUserCircle className='icon'/>
             <button onClick={handleLogout} className="logout-button">
               <span>Logout</span><FiLogOut />
             </button>

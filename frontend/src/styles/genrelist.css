@@ -1,0 +1,56 @@
+.genre-list .title {
+    text-align: center;
+}
+
+.genre-list .genre-buttons {
+    background-color: black;
+    padding: 10px 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.385);
+    padding-left: 15px;
+    border-radius: 16px;
+}
+
+.genre-list .genre-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(3px);
+    border-radius: 16px;
+}
+
+.genre-list .genre-buttons button {
+    margin-right: 10px;
+    background: none;
+    font-size: 18px;
+}
+
+.song-list {
+    display: flex;
+    flex-shrink: 2;
+}
+
+.song-item img {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+}
+
+.song-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.genre-list .song-item {
+    flex: 0 1 calc(33.333% - 20px); /* 3 per row with 20px gap */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.genre-list .song-item:hover {
+    scale: 1.05;
+    transition: all 0.2s ease-in-out;
+}

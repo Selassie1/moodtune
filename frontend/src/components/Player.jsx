@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaPlay, FaPause, FaHeart, FaSyncAlt, FaStepForward, FaStepBackward, FaHandsHelping } from "react-icons/fa";
 import axios from "axios";
+import '../styles/player.css'
 
 const Player = ({ song }) => {
   const audioRef = useRef(null);
@@ -57,14 +58,13 @@ const Player = ({ song }) => {
       </div>
 
       <div className="controls">
+        <button><FaSyncAlt /></button>
         <button><FaStepBackward /></button>
         <button onClick={togglePlay}>
           {isPlaying ? <FaPause /> : <FaPlay />}
         </button>
         <button><FaStepForward /></button>
-        <button><FaSyncAlt /></button>
         <button><FaHeart /></button>
-        <button><FaHandsHelping /></button>
       </div>
 
       <audio ref={audioRef}>

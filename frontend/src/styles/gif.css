@@ -1,0 +1,5 @@
+.gif img {
+    max-width: 430px;
+    object-fit: cover;
+    border: none;
+}

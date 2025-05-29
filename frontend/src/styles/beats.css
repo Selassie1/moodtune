@@ -1,0 +1,17 @@
+.beats {
+    position: relative;
+}
+
+.beats .top {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    max-width: 100%;
+    background-color: rgba(20, 44, 10, 0.8);
+    backdrop-filter: blur(3px);
+    margin-bottom: 20px;
+}
+
+.beats .ranking {
+    text-align: center;
+}

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import '../styles/genrelist.css'
 
-const genres = ["Electronic", "Hip-Hop", "Pop", "Rock"];
+const genres = ["Electronic", "Hip-Hop", "Pop", "Rock", "Jazz", "Dancehall", "Metal", "Reggae", "Funk", "Spoken Word"];
 
 const GenreList = ({ onSelectSong }) => {
   const [selectedGenre, setSelectedGenre] = useState(null);
@@ -31,33 +32,35 @@ const GenreList = ({ onSelectSong }) => {
 
 
   return (
-    <div>
-      <h2>Genres</h2>
-      <div className="genre-buttons">
-        {genres.map((genre) => (
-          <button
-            key={genre}
-            onClick={() => setSelectedGenre(genre)}
-            className={selectedGenre === genre ? "active" : ""}
-          >
-            {genre}
-          </button>
-        ))}
-      </div>
+    <div className="genre-list">
+      <h2 className="title">Genres</h2>
+      <div className="genre-container">
+        <div className="genre-buttons">
+          {genres.map((genre) => (
+            <button
+              key={genre}
+              onClick={() => setSelectedGenre(genre)}
+              className={selectedGenre === genre ? "active" : ""}
+            >
+              {genre}
+            </button>
+          ))}
+        </div>
 
-         {/* 🟡 Loading/Error Feedback */}
-        {loading && <p>Loading songs...</p>}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-      <div className="song-list">
-        {songs.map((song, idx) => (
-          <div key={idx} onClick={() => onSelectSong(song)} className="song-item">
-            <img src={song.artwork?.["150x150"] || '/placeholder.jpg'} alt={song.title || 'Untitled'} />
-            <div>
-              <h4>{song.title  || 'Untitled'}</h4>
-              <p>{song.user?.name  || 'Unknown Artist'}</p>
+          {/* 🟡 Loading/Error Feedback */}
+          {loading && <p>Loading songs...</p>}
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+        <div className="song-list">
+          {songs.map((song, idx) => (
+            <div key={idx} onClick={() => onSelectSong(song)} className="song-item">
+              <img src={song.artwork?.["150x150"] || '/placeholder.jpg'} alt={song.title || 'Untitled'} />
+              <div>
+                <h4>{song.title  || 'Untitled'}</h4>
+                <p>{song.user?.name  || 'Unknown Artist'}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
