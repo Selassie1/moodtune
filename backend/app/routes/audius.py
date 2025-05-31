@@ -32,7 +32,7 @@ def get_trending():
 
 @audius_bp.route('/genre/<genre_name>', methods=['GET'])
 def get_genre_tracks(genre_name):
-    params = {'genre': genre_name, 'limit': request.args.get('limit', 10)}
+    params = {'genre': genre_name, 'limit': request.args.get('limit', 15)}
     data = fetch_from_audius('tracks/trending', params)
 
     if isinstance(data, tuple):

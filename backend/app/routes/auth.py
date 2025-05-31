@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from app.models.user import User
 from app import db
 from flask_jwt_extended import create_access_token
+from app.models.playlist import Playlist
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -18,6 +19,8 @@ def signup():
     new_user = User(id=username, phone=phone)
     new_user.set_password(password)
     db.session.add(new_user)
+    default_playlist = Playlist(name="Favourites", user=new_user)
+    db.session.add(default_playlist)
     db.session.commit()
 
     return jsonify({'message': 'User registered successfully!'}), 201

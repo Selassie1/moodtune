@@ -1,8 +1,9 @@
 # app/__init__.py
 from flask import Flask
 from flask_cors import CORS
-from app.extensions import db, jwt  # ← use extensions
+from app.extensions import db, jwt 
 from app.routes.audius import audius_bp
+from app.models import playlist  
 
 def create_app():
     app = Flask(__name__)

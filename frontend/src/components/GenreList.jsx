@@ -5,7 +5,7 @@ import '../styles/genrelist.css'
 const genres = ["Electronic", "Hip-Hop", "Pop", "Rock", "Jazz", "Dancehall", "Metal", "Reggae", "Funk", "Spoken Word"];
 
 const GenreList = ({ onSelectSong }) => {
-  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [selectedGenre, setSelectedGenre] = useState("Dancehall");
   const [songs, setSongs] = useState([]);
 
   const [loading, setLoading] = useState(false);
@@ -48,7 +48,7 @@ const GenreList = ({ onSelectSong }) => {
         </div>
 
           {/* 🟡 Loading/Error Feedback */}
-          {loading && <p>Loading songs...</p>}
+          {loading && <div className="spinner"></div>}
           {error && <p style={{ color: 'red' }}>{error}</p>}
         <div className="song-list">
           {songs.map((song, idx) => (

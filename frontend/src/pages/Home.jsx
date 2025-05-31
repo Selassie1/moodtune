@@ -10,10 +10,15 @@ import { FiLogOut } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 import { GoBellFill } from "react-icons/go";
 import { CiSearch } from "react-icons/ci";
+import Player from '../components/Player';
 
 export default function Home({ username }) {
   const [activeTab, setActiveTab] = useState('feed');
   const [searchTerm, setSearchTerm] = useState('');
+
+  // Add this to Home.jsx — TOP LEVEL inside the component
+  const [currentSong, setCurrentSong] = useState(null);
+
 
   const handleLogout = () => {
     localStorage.removeItem('access_token');
@@ -29,19 +34,20 @@ export default function Home({ username }) {
   const renderView = () => {
     switch (activeTab) {
       case 'feed':
-        return <Feed />;
+        return <Feed onSelectSong={setCurrentSong} />;
       case 'beats':
-        return <Beats />;
+        return <Beats onSelectSong={setCurrentSong} />;
       case 'radio':
-        return <Radio />;
+        return <Radio onSelectSong={setCurrentSong} />;
       case 'playlists':
-        return <Playlists />;
+        return <Playlists onSelectSong={setCurrentSong} />;
       case 'favorites':
-        return <Favorites />;
+        return <Favorites onSelectSong={setCurrentSong} />;
       default:
-        return <Feed />;
+        return <Feed onSelectSong={setCurrentSong} />;
     }
   };
+
 
   return (
     <div className="home-wrapper">
@@ -72,7 +78,11 @@ export default function Home({ username }) {
           {renderView()}
         </div>
       </div>
-      <div className="right-section"></div>
+      <div className="right-section">
+        <div className="player">
+          <Player song={currentSong} />
+        </div>
+      </div>
     </div>
   );
 }

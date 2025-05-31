@@ -1,12 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FaPlay, FaPause, FaHeart, FaSyncAlt, FaStepForward, FaStepBackward, FaHandsHelping } from "react-icons/fa";
+import { FaPlay, FaPause, FaHeart, FaSyncAlt } from "react-icons/fa";
 import axios from "axios";
-import '../styles/player.css'
+import '../styles/player.css';
+import { MdSkipNext, MdSkipPrevious } from "react-icons/md";
+import Unknown from "../assets/examples/unknown.png";
 
 const Player = ({ song }) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [streamUrl, setStreamUrl] = useState(null);
+
+  // Default values when `song` is null or undefined
+  const defaultSong = {
+    title: "No song selected",
+    user: { name: "Unknown artist" },
+    artwork: { "150x150": Unknown }
+  };
+
+  // Use the actual song if available, otherwise fall back to defaults
+  const currentSong = song || defaultSong;
 
   // Fetch the stream URL when a new song is selected
   useEffect(() => {
@@ -45,26 +57,29 @@ const Player = ({ song }) => {
     }
   };
 
-  if (!song) return null;
-
   return (
     <div className="player-container">
       <div className="song-info">
-        <img src={song.artwork?.["150x150"]} alt={song.title} />
-        <div>
-          <h3>{song.title}</h3>
-          <p>{song.user?.name}</p>
+        <img 
+          src={currentSong.artwork?.["150x150"]} 
+          alt={currentSong.title} 
+          onError={(e) => {
+            e.target.src = "https://via.placeholder.com/150"; // Fallback if image fails to load
+          }}
+        />
+        <div className="song-details">
+          <div className="songtext">
+            <h3>{currentSong.title}</h3>
+            <p>{currentSong.user?.name || "Unknown artist"}</p>
+          </div>
+          <div className="controls">
+            <button><MdSkipPrevious /></button>
+            <button onClick={togglePlay}>
+              {isPlaying ? <FaPause /> : <FaPlay />}
+            </button>
+            <button><MdSkipNext /></button>
+          </div>
         </div>
-      </div>
-
-      <div className="controls">
-        <button><FaSyncAlt /></button>
-        <button><FaStepBackward /></button>
-        <button onClick={togglePlay}>
-          {isPlaying ? <FaPause /> : <FaPlay />}
-        </button>
-        <button><FaStepForward /></button>
-        <button><FaHeart /></button>
       </div>
 
       <audio ref={audioRef}>
