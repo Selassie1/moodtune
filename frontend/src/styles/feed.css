@@ -14,3 +14,42 @@
     transform: translateY(0);
   }
 }
+
+.feed .top {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  padding: 20px;
+  border-radius: 18px;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.feed .top .left {
+  display: flex;
+  align-items: center;
+}
+
+.feed .top img {
+  width: 300px;
+  opacity: 0.8;
+  
+}
+
+.feed .top .right {
+  display: flex;
+  align-items: center;
+  gap: 90px;
+}
+
+.feed .top .right h1 {
+  color: white;
+  margin: 0;
+}
+
+.feed .top .right .text {
+  text-align: center;
+}

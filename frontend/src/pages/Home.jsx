@@ -11,6 +11,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { GoBellFill } from "react-icons/go";
 import { CiSearch } from "react-icons/ci";
 import Player from '../components/Player';
+import SongCategories from '../components/Browse';
 
 export default function Home({ username }) {
   const [activeTab, setActiveTab] = useState('feed');
@@ -29,6 +30,11 @@ export default function Home({ username }) {
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
+  };
+
+  const handleCategorySelect = (category) => {
+    console.log('Selected category:', category);
+    
   };
 
   const renderView = () => {
@@ -63,6 +69,9 @@ export default function Home({ username }) {
               value={searchTerm}
               onChange={handleChange}
             />
+            <div className="browse">
+              <SongCategories onSelectCategory={handleCategorySelect} />
+            </div>
           </div>
           <div className="right">
               <GoBellFill className='icon'/>

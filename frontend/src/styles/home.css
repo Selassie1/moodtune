@@ -52,6 +52,10 @@
   padding-left: 10px;
 }
 
+.home-wrapper .home-content .home-header .left input:focus {
+  outline: none;
+}
+
 .home-wrapper .home-content .home-header .right {
   display: flex;
   align-items: center;
@@ -85,7 +89,7 @@
 }
 
 .home-wrapper .home-content {
-  margin-left: 350px;
+  margin-left: 340px;
   overflow: visible;
 }
 
@@ -108,4 +112,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.browse {
+  cursor: pointer;
+  font-family: 'Urbanist';
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.browse-btn:hover {
+  color: #4CAF50;
+  scale: 1.1;
+  transition: color 0.5s ease;
 }
