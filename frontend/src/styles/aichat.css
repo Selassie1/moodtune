@@ -7,6 +7,9 @@
     padding-right: 60px;
     padding-left: 40px;
     padding-bottom: 40px;
+    position: fixed;
+    top: 360px;
+    right: 0;
 }
 
 .container:hover {

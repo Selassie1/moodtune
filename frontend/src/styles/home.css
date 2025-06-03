@@ -89,8 +89,9 @@
 }
 
 .home-wrapper .home-content {
-  margin-left: 340px;
+  margin-left: 330px;
   overflow: visible;
+  backdrop-filter: blur(10px);
 }
 
 .home-wrapper .right-section {
