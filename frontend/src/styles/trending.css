@@ -84,3 +84,8 @@
     font-size: 18px;
     margin-top: 10px;
 }
+
+.artist-group .song-item {
+    display: flex;
+    flex-direction: column;
+}

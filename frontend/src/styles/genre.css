@@ -1,0 +1,8 @@
+.genre-group {
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 20px;
+    border-radius: 18px;
+    max-width: 1500px;
+    overflow: scroll;
+}

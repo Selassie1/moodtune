@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useEffect } from 'react';
+import '../styles/search.css'
 
 const Search = ({ query: initialQuery, type: initialType = 'track', onAutoSelectTrack }) => {
   const [query, setQuery] = useState(initialQuery || '');
   const [type, setType] = useState(initialType);
   const [results, setResults] = useState([]);
+  const [playlistTracks, setPlaylistTracks] = useState([]); // ✅ NEW STATE
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchPlaylistTracks = async (playlistId) => {
     try {
-      const res = await axios.get(`https://api.deezer.com/playlist/${playlistId}`);
-      const tracks = res.data.tracks?.data || [];
+      const res = await axios.get(`http://localhost:5001/playlist/${playlistId}`); // ✅ USE BACKEND
+      const tracks = res.data.tracks || [];
+      setPlaylistTracks(tracks); // ✅ SET TRACKS
       if (tracks.length > 0) {
         onAutoSelectTrack?.(tracks[0]);
       }
@@ -30,6 +32,7 @@ const Search = ({ query: initialQuery, type: initialType = 'track', onAutoSelect
 
     setIsLoading(true);
     setError(null);
+    setPlaylistTracks([]); 
 
     try {
       const res = await axios.get('http://localhost:5001/search', {
@@ -39,7 +42,7 @@ const Search = ({ query: initialQuery, type: initialType = 'track', onAutoSelect
       const data = res.data.data || [];
       setResults(data);
 
-      // If playlist, auto-fetch first track
+      
       if (type === 'playlist' && data.length > 0) {
         await fetchPlaylistTracks(data[0].id);
       }
@@ -59,7 +62,6 @@ const Search = ({ query: initialQuery, type: initialType = 'track', onAutoSelect
     }
   }, [initialQuery, initialType]);
 
-
   return (
     <div className="search-container">
       <form onSubmit={handleSearch} className="search-form">
@@ -71,7 +73,6 @@ const Search = ({ query: initialQuery, type: initialType = 'track', onAutoSelect
             placeholder="Search for music..."
             className="search-input"
           />
-          
           <select 
             value={type} 
             onChange={(e) => setType(e.target.value)}
@@ -82,7 +83,6 @@ const Search = ({ query: initialQuery, type: initialType = 'track', onAutoSelect
             <option value="album">Albums</option>
             <option value="playlist">Playlists</option>
           </select>
-          
           <button 
             type="submit" 
             disabled={isLoading}
@@ -101,31 +101,27 @@ const Search = ({ query: initialQuery, type: initialType = 'track', onAutoSelect
         ) : (
           <ul className="results-list">
             {results.map((item) => (
-              <li key={item.id} className="result-item">
+              <li key={item.id} className="result-item" onClick={() => type === 'playlist' && fetchPlaylistTracks(item.id)}>
                 {type === 'track' && (
-                  <div className="track">
-                    <img 
-                      src={item.album?.cover_small} 
-                      alt={item.album?.title} 
-                      className="cover-image"
-                    />
-                    <div className="track-info">
-                      <strong>{item.title}</strong>
-                      <span>{item.artist.name}</span>
-                      {item.preview && (
-                        <audio controls src={item.preview} className="audio-preview" />
-                      )}
+                  <div className='contain'>
+                    <div className="track">
+                      <img src={item.album?.cover_small} alt={item.album?.title} className="cover-image" />
+                      <div className="track-info">
+                        <div className="text-details">
+                          <h1>{item.title}</h1>
+                          <span>{item.artist.name}</span>
+                        </div>
+                        
+                      </div>
+                      
                     </div>
+                    {item.preview && <audio controls src={item.preview} className="audio-preview" />}
                   </div>
                 )}
 
                 {type === 'artist' && (
                   <div className="artist">
-                    <img 
-                      src={item.picture_medium} 
-                      alt={item.name} 
-                      className="artist-image"
-                    />
+                    <img src={item.picture_medium} alt={item.name} className="artist-image" />
                     <div className="artist-info">
                       <strong>{item.name}</strong>
                       <span>{item.nb_fan?.toLocaleString()} fans</span>
@@ -135,11 +131,7 @@ const Search = ({ query: initialQuery, type: initialType = 'track', onAutoSelect
 
                 {type === 'album' && (
                   <div className="album">
-                    <img 
-                      src={item.cover_medium} 
-                      alt={item.title} 
-                      className="album-cover"
-                    />
+                    <img src={item.cover_medium} alt={item.title} className="album-cover" />
                     <div className="album-info">
                       <strong>{item.title}</strong>
                       <span>{item.artist.name}</span>
@@ -150,15 +142,12 @@ const Search = ({ query: initialQuery, type: initialType = 'track', onAutoSelect
 
                 {type === 'playlist' && (
                   <div className="playlist">
-                    <img 
-                      src={item.picture_medium} 
-                      alt={item.title} 
-                      className="playlist-image"
-                    />
+                    <img src={item.picture_medium} alt={item.title} className="playlist-image" />
                     <div className="playlist-info">
                       <strong>{item.title}</strong>
                       <span>By {item.user?.name}</span>
                       <span>{item.nb_tracks} tracks</span>
+                      <em className="click-to-view">(Click to load & play)</em>
                     </div>
                   </div>
                 )}
@@ -167,6 +156,20 @@ const Search = ({ query: initialQuery, type: initialType = 'track', onAutoSelect
           </ul>
         )}
       </div>
+
+      {playlistTracks.length > 0 && (
+        <div className="playlist-tracks">
+          <h3>Playlist Tracks</h3>
+          <ul className="track-list">
+            {playlistTracks.map((track) => (
+              <li key={track.id} className="track-item">
+                <strong>{track.title}</strong> — {track.artist.name}
+                {track.preview && <audio controls src={track.preview} className="audio-preview" />}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

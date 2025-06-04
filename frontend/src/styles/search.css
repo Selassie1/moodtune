@@ -1,0 +1,54 @@
+ul {
+    list-style: none;
+}
+
+.result-item .track {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.result-item .track-info {
+    display: flex;
+    gap: 20px;
+}
+
+.result-item .text-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-container .results-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    padding: 10px;
+}
+
+.search-container .result-item {
+    padding: 10px;
+}
+
+.result-item img {
+    width: 100px;
+}
+
+.result-item h1 {
+    font-size: 23px;
+
+}
+
+.audio-preview {
+    background-color: #2Ecc40;
+    height: 40px;
+    border-radius: 18px;
+    padding: 1px;
+    margin-top: 10px;
+    max-width: 300px;
+}
+
+.contain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

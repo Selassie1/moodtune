@@ -11,15 +11,16 @@ import { FaUserCircle } from "react-icons/fa";
 import { GoBellFill } from "react-icons/go";
 import { CiSearch } from "react-icons/ci";
 import Player from '../components/Player';
+import Search from '../views/Search';
 import SongCategories from '../components/Browse';
 
 export default function Home({ username }) {
   const [activeTab, setActiveTab] = useState('feed');
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Add this to Home.jsx — TOP LEVEL inside the component
-  const [currentSong, setCurrentSong] = useState(null);
+  const [isSearching, setIsSearching] = useState(false);
 
+  const [currentSong, setCurrentSong] = useState(null);
 
   const handleLogout = () => {
     localStorage.removeItem('access_token');
@@ -29,7 +30,13 @@ export default function Home({ username }) {
 
 
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
+    const value = event.target.value;
+    setSearchTerm(value);
+    if (value.trim()) {
+      setIsSearching(true); 
+    } else {
+      setIsSearching(false);
+    }
   };
 
   const handleCategorySelect = (category) => {
@@ -38,6 +45,10 @@ export default function Home({ username }) {
   };
 
   const renderView = () => {
+    if (isSearching) {
+      return <Search query={searchTerm} />;
+    }
+
     switch (activeTab) {
       case 'feed':
         return <Feed onSelectSong={setCurrentSong} />;
@@ -53,6 +64,7 @@ export default function Home({ username }) {
         return <Feed onSelectSong={setCurrentSong} />;
     }
   };
+
 
 
   return (

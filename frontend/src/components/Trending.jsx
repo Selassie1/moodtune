@@ -71,16 +71,19 @@ const Trending = () => {
       </div>
       
 
-      <h2>Trending Songs</h2>
-      <ul>
+      {/* <h2>Trending Songs</h2>
+      <ul className='artist-group song-group'>
         {tracks.map(track => (
-          <li key={track.id} style={{ marginBottom: '1rem' }}>
+          <li key={track.id} style={{ marginBottom: '1rem' }} className='song-item'>
             <img src={track.album?.cover_medium} alt={track.title} width="100" />
-            <div>{track.title} by {track.artist.name}</div>
-            <audio controls src={track.preview}></audio>
+            <div className="details">
+              <div>{track.album?.title}</div>
+              <div>{track.artist.name}</div>
+              <audio controls src={track.preview}></audio>
+            </div>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };

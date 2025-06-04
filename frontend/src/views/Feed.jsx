@@ -1,10 +1,7 @@
 import React from 'react';
-import AiChat from '../components/AiChat';
 import '../styles/feed.css'
-import Phone from '../assets/images/phones.png';
 import Last from '../assets/images/31.png';
 import Trending from '../components/Trending';
-import Search from '../components/Search';
 import Genre from '../components/Genre';
 
 const Feed = () => {
@@ -24,11 +21,7 @@ const Feed = () => {
         </div>
       </div>
       <Trending />
-      <Search />
       <Genre />
-      <div className="ai">
-        <AiChat />
-      </div>
     </div>
   
 );

@@ -3,15 +3,15 @@ import '../styles/aichat.css'
 import { BsFillDiscFill } from "react-icons/bs";
 import { FaMicrophone } from "react-icons/fa";
 
-const AiChat = () => {
+const AiChat = ({ onResponse }) => {
   const [message, setMessage] = useState('');
   const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);
 
   const sendPrompt = async () => {
     if (!message.trim()) return;
-
     setLoading(true);
+
     try {
       const res = await fetch('http://localhost:5001/api/ai/chat', {
         method: 'POST',
@@ -20,7 +20,11 @@ const AiChat = () => {
       });
 
       const data = await res.json();
-      setResponse(data.response || data.error || 'No response');
+      const friendly = data.response || 'No response';
+      const keywords = data.keywords || '';
+
+      setResponse(friendly);
+      onResponse?.(friendly, keywords);  // 🔥 Trigger callback
     } catch (error) {
       console.error(error);
       setResponse('Error connecting to server.');
