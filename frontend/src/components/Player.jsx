@@ -24,7 +24,7 @@ const Player = ({ song }) => {
   useEffect(() => {
     if (song?.id) {
       setIsPlaying(false); // Reset play state
-      axios.get(`http://localhost:5001/api/audius/stream/${song.id}`)
+      axios.get(`https://moodtune-m133.onrender.com/api/audius/stream/${song.id}`)
         .then(res => {
           setStreamUrl(res.data.stream_url);
         })

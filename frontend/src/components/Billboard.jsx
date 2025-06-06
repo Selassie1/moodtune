@@ -7,7 +7,7 @@ const Billboard = ({ onSelectSong }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5001/api/audius/trending")
+      .get("https://moodtune-m133.onrender.com/api/audius/trending")
       .then((res) => {
         setTopSongs(res.data.data.slice(0, 2)); // Get first and second song
       })

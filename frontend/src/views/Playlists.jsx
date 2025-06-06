@@ -8,7 +8,7 @@ const Playlists = () => {
 
   // Fetch playlists (adjust route if different)
   useEffect(() => {
-    axios.get('http://localhost:5001/api/playlists')
+    axios.get('https://moodtune-m133.onrender.com/api/playlists')
       .then(res => setPlaylists(res.data))
       .catch(err => console.error('Error fetching playlists:', err));
   }, []);

@@ -16,7 +16,7 @@ const GenreList = ({ onSelectSong }) => {
         setLoading(true);
         setError(null);
         axios
-        .get(`http://localhost:5001/api/audius/genre/${selectedGenre}`)
+        .get(`https://moodtune-m133.onrender.com/api/audius/genre/${selectedGenre}`)
         .then((res) => {
             setSongs(res.data.data);
             setLoading(false);

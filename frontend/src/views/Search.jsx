@@ -12,7 +12,7 @@ const Search = ({ query: initialQuery, type: initialType = 'track', onAutoSelect
 
   const fetchPlaylistTracks = async (playlistId) => {
     try {
-      const res = await axios.get(`http://localhost:5001/playlist/${playlistId}`); // ✅ USE BACKEND
+      const res = await axios.get(`https://moodtune-m133.onrender.com/playlist/${playlistId}`); // ✅ USE BACKEND
       const tracks = res.data.tracks || [];
       setPlaylistTracks(tracks); // ✅ SET TRACKS
       if (tracks.length > 0) {
@@ -35,7 +35,7 @@ const Search = ({ query: initialQuery, type: initialType = 'track', onAutoSelect
     setPlaylistTracks([]); 
 
     try {
-      const res = await axios.get('http://localhost:5001/search', {
+      const res = await axios.get('https://moodtune-m133.onrender.com/search', {
         params: { q: query, type, limit: 10 }
       });
 

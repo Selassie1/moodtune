@@ -32,7 +32,7 @@ const Search = ({ query: initialQuery, type: initialType = 'track', onAutoSelect
     setError(null);
 
     try {
-      const res = await axios.get('http://localhost:5001/search', {
+      const res = await axios.get('https://moodtune-m133.onrender.com/search', {
         params: { q: query, type, limit: 10 }
       });
 

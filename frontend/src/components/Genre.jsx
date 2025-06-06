@@ -7,7 +7,7 @@ const Genre = () => {
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5001/genres')
+    axios.get('https://moodtune-m133.onrender.com/genres')
       .then(res => {
         setGenres(res.data.data);
       })

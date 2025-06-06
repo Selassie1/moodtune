@@ -13,7 +13,7 @@ const Trending = () => {
   const [selectedPlaylist, setSelectedPlaylist] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5001/trending')
+    axios.get('https://moodtune-m133.onrender.com/trending')
       .then(res => {
         setTracks(res.data.tracks);
         setArtists(res.data.artists);
