@@ -4,6 +4,7 @@ from flask_cors import CORS
 from app.extensions import db, jwt 
 from app.routes.audius import audius_bp
 from app.models import playlist  
+from app.routes.deezer import deezer_bp
 
 def create_app():
     app = Flask(__name__)
@@ -22,5 +23,6 @@ def create_app():
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(ai_bp, url_prefix='/api/ai')
     app.register_blueprint(audius_bp, url_prefix='/api/audius')
+    app.register_blueprint(deezer_bp)
 
     return app
